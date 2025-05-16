@@ -1,5 +1,6 @@
 package org.mch.messaging;
 
+import io.quarkus.arc.profile.IfBuildProfile;
 import io.smallrye.reactive.messaging.annotations.Blocking;
 import io.vertx.core.json.JsonObject;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -10,6 +11,7 @@ import org.mch.dto.AppointmentEvent;
 import org.mch.entity.MedicalRecord;
 import org.mch.qualifiers.RabbitProducer;
 
+@IfBuildProfile("dev")
 @RabbitProducer
 @ApplicationScoped
 public class AppointmentEventConsumerRabbitMQ implements AppointmentEventConsumer {
