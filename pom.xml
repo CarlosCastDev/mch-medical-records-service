@@ -78,6 +78,17 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-messaging-rabbitmq</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.cloud.sql</groupId>
+            <artifactId>mysql-socket-factory-connector-j-8</artifactId>
+            <version>1.25.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.quarkiverse.googlecloudservices/quarkus-google-cloud-pubsub -->
+        <dependency>
+            <groupId>io.quarkiverse.googlecloudservices</groupId>
+            <artifactId>quarkus-google-cloud-pubsub</artifactId>
+            <version>2.16.1</version>
+        </dependency>
     </dependencies>
 
     <build>
