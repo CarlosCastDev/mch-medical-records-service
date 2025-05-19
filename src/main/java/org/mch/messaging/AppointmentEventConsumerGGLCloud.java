@@ -8,10 +8,12 @@ import com.google.api.gax.core.FixedExecutorProvider;
 import com.google.cloud.pubsub.v1.MessageReceiver;
 import com.google.cloud.pubsub.v1.Subscriber;
 import com.google.pubsub.v1.ProjectSubscriptionName;
+import io.quarkus.runtime.Startup;
 import io.vertx.core.json.JsonObject;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.mch.dto.AppointmentEvent;
@@ -21,7 +23,7 @@ import org.mch.qualifiers.GCloudProducer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-@GCloudProducer
+@Startup
 @ApplicationScoped
 @Slf4j
 public class AppointmentEventConsumerGGLCloud implements AppointmentEventConsumer {
@@ -76,6 +78,7 @@ public class AppointmentEventConsumerGGLCloud implements AppointmentEventConsume
         log.info("🛑 Subscriber detenido");
     }
 
+    @Transactional
     @Override
     public void processAppointmentEvent(JsonObject json) {
         AppointmentEvent event = json.mapTo(AppointmentEvent.class);
