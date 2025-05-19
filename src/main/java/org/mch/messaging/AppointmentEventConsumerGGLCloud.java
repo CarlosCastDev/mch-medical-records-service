@@ -35,7 +35,7 @@ public class AppointmentEventConsumerGGLCloud implements AppointmentEventConsume
 
     private Subscriber subscriber;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    ScheduledExecutorService executor = Executors.newScheduledThreadPool(4);
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     FixedExecutorProvider executorProvider = FixedExecutorProvider.create(executor);
 
     @PostConstruct
